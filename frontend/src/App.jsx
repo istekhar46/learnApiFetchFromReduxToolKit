@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { ToastContainer } from 'react-toastify'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -6,15 +7,18 @@ import { Box, Container, Paper, CssBaseline } from "@mui/material";
 import Hero from './components/Hero'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <CssBaseline />
-      <Container maxWidth="sm">
-        <Hero/>
+      {/* <ToastContainer/> */}
+      {/* <CssBaseline /> */}
+      {/* <Container maxWidth="sm"> */}
+      <div className="di">
 
-      </Container>
+        <Hero/>
+      </div>
+
+      {/* </Container> */}
     
     
     </>

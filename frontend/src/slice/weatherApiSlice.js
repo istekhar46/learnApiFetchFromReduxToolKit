@@ -5,12 +5,12 @@ import { apiSlice } from "../slice/apiSlice";
 const wetherApislice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         fetchData: builder.mutation({
-            query: () => ({
-                url: 'https://open-weather13.p.rapidapi.com/city/london',
+            query: ({city}) => ({
+                url: `https://open-weather13.p.rapidapi.com/city/${city}`,
                 headers: {
-                    'X-RapidAPI-Key': '50b74be4abmsh3612e33a5aa0344p120b8ejsn2a83698e62d4',
+                    'X-RapidAPI-Key': '23eefba2acmsh03cdf53a5c28429p14ee8ajsn27f21874d4cc',
                     'X-RapidAPI-Host': 'open-weather13.p.rapidapi.com'
-                }
+                  }
             }),
         }),
     })
