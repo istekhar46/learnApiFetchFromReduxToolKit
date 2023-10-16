@@ -97,14 +97,17 @@ const Hero = () => {
             <h1>{weatherData.name}</h1>
             <p>Latitude: {weatherData.coord?.lat}</p>
             <p>Longitude: {weatherData.coord?.lon}</p>
-            <p>weather: {weatherData.weather?.main}</p>
+            <p>Weather: {weatherData.weather?.main}</p>
             <p>Temperature: {weatherData.main.temp}</p>
             <p>Feels Like: {weatherData.main.feels_like}</p>
             <p>Humidity: {weatherData.main.humidity}</p>
-            {/* <p>
-              Wind:- Speed: {weatherData[0].wind.speed} Degree:{" "}
-              {weatherData[0].wind.deg}
-            </p> */}
+            <p>
+              Wind:- Speed: {weatherData.wind?.speed} Degree:{" "}
+              {weatherData.wind?.deg}
+            </p>
+            <p>
+              Description: {weatherData.weather[0].description}
+            </p>
             {/* <p>
               Sunrise:{" "}
               {new Date(weather.sys.sunrise * 1000)
@@ -122,7 +125,7 @@ const Hero = () => {
         </>
       ) : (
         <>
-          <p>No data awailable</p>
+          <p>No data available</p>
         </>
       )}
 

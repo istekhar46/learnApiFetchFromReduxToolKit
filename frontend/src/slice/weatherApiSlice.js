@@ -13,8 +13,13 @@ const wetherApislice = apiSlice.injectEndpoints({
                   }
             }),
         }),
+        fetchTodos: builder.mutation({
+            query: ()=> ({
+                url: 'https://dummyjson.com/todos', 
+            })
+        })
     })
 
 });
 
-export const { useFetchDataMutation } = wetherApislice
+export const { useFetchDataMutation, useFetchTodosMutation } = wetherApislice
