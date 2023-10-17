@@ -156,7 +156,7 @@ const Hero = () => {
                   <SearchIcon />
                 </SearchIconWrapper>
                 <StyledInputBase
-                  placeholder="Search…"
+                  placeholder="Search City"
                   inputProps={{ "aria-label": "search" }}
                   value={city}
                   onChange={(e) => setCity(e.target.value)}

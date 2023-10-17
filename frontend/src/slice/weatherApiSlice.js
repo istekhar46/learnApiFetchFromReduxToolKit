@@ -17,9 +17,14 @@ const wetherApislice = apiSlice.injectEndpoints({
             query: ()=> ({
                 url: 'https://dummyjson.com/todos', 
             })
+        }),
+        fetchProducts: builder.mutation({
+            query: ()=> ({
+                url: 'https://dummyjson.com/products?skip=10&limit=12', 
+            })
         })
     })
 
 });
 
-export const { useFetchDataMutation, useFetchTodosMutation } = wetherApislice
+export const { useFetchDataMutation, useFetchTodosMutation, useFetchProductsMutation } = wetherApislice

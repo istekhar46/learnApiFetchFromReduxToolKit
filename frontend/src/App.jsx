@@ -7,6 +7,7 @@ import { Box, Container, Paper, CssBaseline } from "@mui/material";
 import Hero from './components/Hero'
 import Dropdown from './components/Dropdown'
 import Todos from './components/Todos'
+import ECart from './components/ECart'
 
 function App() {
 
@@ -16,9 +17,10 @@ function App() {
       {/* <CssBaseline /> */}
       {/* <Container maxWidth="sm"> */}
       <div className="di">
+        <Hero/>
+        <ECart/>
         <Dropdown/>
         <Todos/>
-        <Hero/>
       </div>
 
       {/* </Container> */}
