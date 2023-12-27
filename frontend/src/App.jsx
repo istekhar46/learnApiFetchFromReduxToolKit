@@ -3,28 +3,30 @@ import { ToastContainer } from 'react-toastify'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { Box, Container, Paper, CssBaseline } from "@mui/material";
+import Counter from './components/Counter'
 import Hero from './components/Hero'
-import Dropdown from './components/Dropdown'
-import Todos from './components/Todos'
-import ECart from './components/ECart'
+import MckinlyRice from './components/MckinlyRice'
+import Todo from './components/Todo'
 
 function App() {
 
+  const [count, setCount] = useState(0);
+
+  const handleIncrement = () => {
+    setCount(pre => pre + 1)
+  }
+  const handleDecrement = () => {
+    setCount(count - 1);
+
+  }
+
+
   return (
     <>
-      {/* <ToastContainer/> */}
-      {/* <CssBaseline /> */}
-      {/* <Container maxWidth="sm"> */}
-      <div className="di">
-        <Hero/>
-        <ECart/>
-        <Dropdown/>
-        <Todos/>
-      </div>
+     <div className='w-full'>
+         <Todo/>
+     </div>
 
-      {/* </Container> */}
-    
     
     </>
   )
