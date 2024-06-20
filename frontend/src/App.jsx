@@ -26,6 +26,9 @@ function App() {
      <div className='w-full'>
          <Todo/>
      </div>
+     <dir>
+      <Hero/>
+     </dir>
 
     
     </>

@@ -1,0 +1,40 @@
+.gradient{
+    background: linear-gradient(35deg, rgb(6, 0, 151) 0%, rgb(130, 4, 255) 73%, rgb(193, 15, 255) 100%);
+}
+.hero-serction {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 8rem 12rem;
+}
+.text-contaier {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3rem;
+}
+.text-contaier h1 {
+    font-size: 6rem;
+    font-weight: 400;
+    color: #FFFDFA;
+}
+.text-contaier h4 {
+    font-size: 1.8rem;
+    color: #FFFDFA;
+    font-weight: 300;
+}
+.text-contaier button {
+    background-color: #F3B412;
+    border: none;
+    padding: 2rem 3rem;
+    border-radius: 3rem;
+    font-size: 1.6rem;
+    color: #24211D;
+    font-weight: 600;
+}
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7rem 0 0 0; 
+}
