@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/home/Home"
 import Contact from "../pages/contact_us/Contact_us"
-import TaskPage from "../pages//task_page/Task"
+import TaskPage from "../pages/task_page/TaskPage"
 
 const Router = () => {
   return (

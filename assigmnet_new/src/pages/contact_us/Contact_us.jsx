@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import styled, { css } from 'styled-components';
-import { useSelector } from 'react-redux';
-import PopupContainer from './PopupContainer';
+import React, { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import styled, { css } from "styled-components";
+import { useSelector } from "react-redux";
+import PopupContainer from "./PopupContainer"; 
 
 
 const FormContainer = styled.div`
@@ -13,7 +13,7 @@ const FormContainer = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
   ${(props) =>
-    props.theme === 'light' &&
+    props.theme === "light" &&
     css`
       background-color: #fffdfa;
       color: #333;
@@ -39,7 +39,7 @@ const FormContainer = styled.div`
     color: #fff;
 
     ${(props) =>
-      props.theme === 'light' &&
+      props.theme === "light" &&
       css`
         background-color: #fffdfa;
         color: #333;
@@ -54,8 +54,8 @@ const FormContainer = styled.div`
     margin-bottom: 1rem;
   }
 
-  button[type='submit'],
-  button[type='button'] {
+  button[type="submit"],
+  button[type="button"] {
     background-color: #fdfdfde6;
     color: #24211d;
     border: none;
@@ -67,16 +67,16 @@ const FormContainer = styled.div`
     margin-top: 1rem;
   }
   ${(props) =>
-    props.theme === 'light' &&
+    props.theme === "light" &&
     css`
-      button[type='submit'],
-      button[type='button'] {
+      button[type="submit"],
+      button[type="button"] {
         background-color: #24211d;
         color: #fdfdfde6;
       }
     `}
 
-  button[type='button']:hover {
+  button[type="button"]:hover {
     background-color: #45a049;
   }
 
@@ -85,14 +85,8 @@ const FormContainer = styled.div`
   }
 `;
 
-const FileInput = styled(Field)`
-  display: none;
-`;
-
 const FileInputLabel = styled.label`
-  background-color: #555;
   color: white;
-  padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
   margin-bottom: 1rem;
@@ -100,40 +94,50 @@ const FileInputLabel = styled.label`
 `;
 
 const initialValues = {
-  name: '',
-  email: '',
-  address: '',
-  dob: '',
-  bio: '',
+  name: "",
+  email: "",
+  address: "",
+  dob: "",
+  bio: "",
   profileImage: null,
   bannerImage: null,
 };
 
 const validationSchema = Yup.object({
-  name: Yup.string().required('Name is required'),
-  email: Yup.string().email('Invalid email address').required('Email is required'),
-  address: Yup.string().required('Address is required'),
-  dob: Yup.date().nullable().required('Date of Birth is required'),
-  bio: Yup.string().required('Bio is required'),
-  profileImage: Yup.mixed().required('Profile image is required'),
-  bannerImage: Yup.mixed().required('Banner image is required'),
+  name: Yup.string().required("Name is required"),
+  email: Yup.string().email("Invalid email address").required("Email is required"),
+  address: Yup.string().required("Address is required"),
+  dob: Yup.date().nullable().required("Date of Birth is required"),
+  bio: Yup.string().required("Bio is required"),
+  profileImage: Yup.mixed().required("Profile image is required"),
+  bannerImage: Yup.mixed().required("Banner image is required"),
 });
 
-const ContactForm = ({ onSubmit }) => {
+const ContactForm = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [formData, setFormData] = useState(null);
+  const [profileImageUrl, setProfileImageUrl] = useState(null);
+  const [bannerImageUrl, setBannerImageUrl] = useState(null);
+  
   const theme = useSelector((state) => state.theme.mode);
 
-  const handleFormSubmit = (values, { resetForm }) => {
+  const handleFormSubmit = (values, { resetForm, setFieldValue }) => {
     setFormData(values);
+    setProfileImageUrl(URL.createObjectURL(values.profileImage));
+    setBannerImageUrl(URL.createObjectURL(values.bannerImage));
     setShowPopup(true);
-    onSubmit(values);
+    
+    setFieldValue("profileImage", null);
+    setFieldValue("bannerImage", null);
+    
     resetForm(); 
   };
 
   const handleClosePopup = () => {
     setShowPopup(false);
     setFormData(null);
+    setProfileImageUrl(null);
+    setBannerImageUrl(null);
   };
 
   return (
@@ -198,11 +202,14 @@ const ContactForm = ({ onSubmit }) => {
             <div>
               <FileInputLabel htmlFor="profileImage">
                 Select Profile Image
-                <FileInput
+                <input
                   type="file"
                   id="profileImage"
                   name="profileImage"
                   accept="image/*"
+                  onChange={(event) => {
+                    formikProps.setFieldValue("profileImage", event.currentTarget.files[0]);
+                  }}
                 />
               </FileInputLabel>
               <ErrorMessage
@@ -215,11 +222,14 @@ const ContactForm = ({ onSubmit }) => {
             <div>
               <FileInputLabel htmlFor="bannerImage">
                 Select Banner Image
-                <FileInput
+                <input
                   type="file"
                   id="bannerImage"
                   name="bannerImage"
                   accept="image/*"
+                  onChange={(event) => {
+                    formikProps.setFieldValue("bannerImage", event.currentTarget.files[0]);
+                  }}
                 />
               </FileInputLabel>
               <ErrorMessage
@@ -237,14 +247,17 @@ const ContactForm = ({ onSubmit }) => {
         )}
       </Formik>
 
-      {showPopup && <PopupContainer formData={formData} handleClosePopup={handleClosePopup} />}
+      {showPopup && (
+        <PopupContainer
+          formData={formData}
+          profileImageUrl={profileImageUrl}
+          bannerImageUrl={bannerImageUrl}
+          handleClosePopup={handleClosePopup}
+          theme={theme}
+        />
+      )}
     </>
   );
 };
 
 export default ContactForm;
-
-
-
-
-
